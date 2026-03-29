@@ -1,0 +1,68 @@
+/* src/components/animations.css - minimal needed styles referenced by components */
+
+/* overlay/modal */
+.overlay.modal-open { position: fixed; inset: 0; background: rgba(0,0,0,0.72); display:flex; align-items:center; justify-content:center; z-index:50; }
+.book-details.modal { background: #0f1220; padding: 1rem; border-radius: 12px; width: min(920px, 95%); animation: modalIn .28s ease both; display:flex; gap: 1rem; color: #fff; }
+@keyframes modalIn { from { transform: translateY(10px) scale(.98); opacity: 0 } to { transform: none; opacity: 1 } }
+
+.book-details img { width: 220px; height: 300px; object-fit: cover; border-radius: 8px; }
+.modal-info { flex:1; display:flex; flex-direction:column; gap:.6rem; }
+.modal-actions { display:flex; justify-content:flex-end; gap:.8rem; align-items:center; }
+.price { font-weight: 800; color: #ff6a6a; }
+
+/* floating-book styles (used by AnimatedBackground) */
+.floating-book { position:absolute; top:110vh; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:2px solid #6ee7ff; box-shadow: 0 0 12px rgba(110,231,255,0.18); will-change: transform, opacity; animation-name: bookFloat; animation-iteration-count: infinite; animation-timing-function: linear; }
+@keyframes bookFloat { 0% { transform: translateY(0) rotate(0deg); opacity:0 } 10%{ opacity:.6 } 50%{ transform: translateY(-55vh) rotate(180deg) scale(1.03); opacity:1 } 100%{ transform: translateY(-140vh) rotate(360deg); opacity:0 } }
+
+/* hero / basic modal close */
+.close { position: absolute; right: 10px; top: 10px; background: transparent; border: none; color: #fff; font-size: 1.1rem; cursor: pointer; }
+
+/* small responsive rules so modal fits on mobile */
+@media (max-width: 720px) {
+  .book-details.modal { flex-direction: column; align-items: center; }
+  .book-details img { width: 60vw; height: auto; }
+}
+/* cart-drawer (slide-in) */
+.cart-drawer{position:fixed;right:0;top:0;height:100vh;width:360px;max-width:92%;background:linear-gradient(180deg,#0b0d14, #0f1220);box-shadow: -20px 0 50px rgba(0,0,0,0.6);transform:translateX(110%);transition:transform .34s cubic-bezier(.2,.9,.2,1);z-index:100}
+.cart-drawer.open{transform:translateX(0)}
+.cart-drawer .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:1rem;border-bottom:1px solid rgba(255,255,255,0.03)}
+.drawer-body{padding:1rem;overflow:auto;max-height:60vh}
+.drawer-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+.drawer-item{display:flex;gap:.6rem;align-items:center;padding:.6rem;border-radius:8px;background:rgba(255,255,255,0.01)}
+.drawer-item img{width:64px;height:84px;object-fit:cover;border-radius:6px}
+.di-meta{flex:1}
+.di-controls{display:flex;align-items:center;gap:.6rem;margin-top:.4rem}
+.di-controls button{width:28px;height:28px;border-radius:6px;border:none;background:rgba(255,255,255,0.03);cursor:pointer}
+.drawer-footer{padding:1rem;border-top:1px solid rgba(255,255,255,0.03)}
+.drawer-footer .calc{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.6rem}
+.drawer-footer .total{margin-top:.4rem;font-size:1.05rem}
+.drawer-actions .primary{width:100%;padding:.8rem;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#000;font-weight:800}
+.remove{background:transparent;border:none;color:#ff6a6a;cursor:pointer}
+/* Floating book appearance improvements — ensures they're visible and neon-glow */
+.floating-book {
+  position: absolute;
+  top: 100vh;
+  opacity: 0.32; /* increased so they are visible */
+  border-radius: 12px;
+  border: 2.6px solid rgba(73,240,255,0.9);
+  box-shadow: 0 8px 40px rgba(73,240,255,0.14);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.18));
+  will-change: transform, opacity;
+  transition: transform 0.18s ease;
+  pointer-events: none;
+}
+
+/* ensure bg-canvas under cards */
+.bg-canvas { z-index: 1; }
+
+/* modal/popin animations used on various blocks */
+.popin { animation: popIn .38s cubic-bezier(.2,.9,.2,1) both; }
+@keyframes popIn { from { transform: translateY(-10px) scale(.985); opacity: 0 } to { transform: none; opacity: 1 } }
+
+/* Chat typing dots */
+.typing-dots { display:inline-block; margin-left: 6px; color: var(--muted); font-weight:800; }
+.typing-dots b { margin:0 1px; animation: dotPulse 1s infinite; opacity:0.15; display:inline-block; }
+.typing-dots b:nth-child(1){ animation-delay:0s }
+.typing-dots b:nth-child(2){ animation-delay:.12s }
+.typing-dots b:nth-child(3){ animation-delay:.24s }
+@keyframes dotPulse { 0% { transform: translateY(0); opacity: .25 } 50% { transform: translateY(-6px); opacity: 1 } 100% { transform: translateY(0); opacity: .25 } }

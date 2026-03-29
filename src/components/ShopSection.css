@@ -1,0 +1,85 @@
+/* ShopSection.css - styles for books grid, filters, reveal animation */
+
+.shop {
+  padding: 28px 0;
+}
+
+/* search + filters */
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.search {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+  font-size: 15px;
+}
+.filters { display:flex; gap:8px; align-items:center; }
+.filter-select {
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* grid layout */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+/* card */
+.book-card {
+  display:flex;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+  opacity: 0;
+  transform: translateY(18px) scale(0.997);
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;
+  cursor: pointer;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.book-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.thumb { width: 120px; height: 170px; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+.thumb img { width:100%; height:100%; object-fit:cover; transform-origin:center; transition: transform 300ms ease; }
+.book-card:hover .thumb img { transform: scale(1.06) rotate(-2deg); }
+
+/* meta */
+.meta { flex:1; display:flex; flex-direction:column; }
+.meta h3 { margin:0; font-size:18px; }
+.author { margin-top:6px; color: rgba(255,255,255,0.7); font-size:14px; }
+.summary { margin-top:10px; color: rgba(255,255,255,0.9); font-size:14px; line-height:1.2; height:46px; overflow:hidden; }
+.row { display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+.price { font-weight:900; color: #ffb36a; }
+.add-btn {
+  background: linear-gradient(90deg,#ff6a00,#ff8e3a);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #060606;
+  font-weight:800;
+}
+
+/* no results */
+.no-results { padding: 40px; text-align:center; color: rgba(255,255,255,0.6); grid-column: 1/-1; }
+
+/* small screens */
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+  .book-card { flex-direction: row; }
+  .thumb { width: 110px; height: 150px; }
+}

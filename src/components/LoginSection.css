@@ -1,0 +1,160 @@
+/* LoginSection specific layout, overrides globals if needed */
+
+.login-section {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.login-section .login-card {
+  display: flex;
+  gap: 34px;
+  max-width: 980px;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 10, 14, 0.8),
+    rgba(7, 10, 14, 0.55)
+  );
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.login-section .login-card.active {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.75);
+}
+
+.login-section .login-left {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.login-section .logo-wrap img {
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.login-section h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.login-section .muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Right form side */
+.login-section .login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-section .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.login-section .field label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.login-section input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--white);
+  outline: none;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+/* IMPORTANT: no weird letter-spacing, no transform that affects typing */
+.login-section input::placeholder {
+  color: rgba(154, 166, 176, 0.7);
+}
+
+.login-section input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255, 122, 0, 0.4);
+}
+
+/* password row */
+.login-section .pass-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-section .pass-row input {
+  flex: 1;
+}
+
+.login-section .show-btn {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--muted);
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.login-section .show-btn:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* actions row uses global .btn styles from App.css */
+.login-section .login-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.login-section .btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+
+/* small tip text */
+.login-section .tip {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .login-section .login-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .login-section .login-left {
+    width: 100%;
+  }
+}
